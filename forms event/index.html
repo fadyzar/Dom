@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22.3_guess_my_letter</title>
+    <style>
+        body{
+            background-color: rgb(143, 136, 136);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #div {
+            width: 100%;
+            height: 630px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            gap: 20px;
+            border: 1px solid gray;
+            padding: 30px;
+        }
+
+        #letterDiv {
+            border: 1px solid black;
+            border-radius: 5px;;
+            width: 50px;
+        }
+
+        #hideLetter {
+            display: none;
+        }
+
+        #afterWin{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            display: none;
+            
+        }
+
+        #letterBox{
+            display: none;
+            border: 1px solid black;
+            border-radius: 5px;;
+            width: 50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="div">
+            <h1>Welcome To Guess My Letter</h1>
+            <div id="letterContain"></div>
+            <div id="letterDiv" >
+
+               
+                <p id="questionMark" > &nbsp;&nbsp;&nbsp;&nbsp; ?</p>
+                
+               
+            </div>
+            <div id="letterBox" >
+
+               
+                <p id="rightLetter" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+                
+               
+            </div>
+            <h3 id="pRight"></h3>
+
+            <div id="afterWin">
+                <h4>Would you like to play again?</h4>
+                <button id="resetBtn">Yes</button>
+            </div>
+            <h3>Guess a Key </h3>
+            <h2>Keys Guessed</h2>
+
+            <p id="answer"></p>
+          
+            
+            <p id="right-answer"></p>
+
+        </div>
+    </div>
+
+
+    <script>
+        let answers = document.querySelector("#answer");
+        let input = document.querySelector("#input");
+        let btn = document.querySelector("#submit");
+        const playAgain = document.getElementById("afterWin")
+        const reset = document.getElementById("resetBtn")
+        let pRight = document.querySelector("#pRight");
+        let rightAnswer = document.querySelector("#right-answer");
+        // const questionMark = document.getElementsByClassName("questionMark")
+        const letterBox = document.getElementById("letterBox")
+        const questionDiv = document.getElementById("letterDiv");
+        let rightLeetter = document.getElementById("rightLetter")
+
+
+
+
+        let random = randomChar();
+        console.log(random);
+        
+
+
+
+        window.addEventListener("keypress", function (e) {
+            if (e.key.match(/^[a-zA-Z]+$/) != null) {
+                answers.innerText += e.key + `,`;
+            }
+                if (e.key === random) {
+                    pRight.innerText = `Right letter`;
+                    questionDiv.remove();
+                    letterBox.style.display = "flex"
+                    letterBox.style.backgroundColor = "green"
+                    rightLeetter.innerText += e.key
+
+                    pRight.style.color = "green"
+                    rightAnswer.innerText = `The guess was : ${random}`;
+                    playAgain.style.display = "flex"
+                    
+                    
+
+                    
+                } else {
+                pRight.innerText = `NOOP, WRONG LETTER`;
+
+            }
+        });
+        
+
+        reset.addEventListener("click",function(){
+            location.reload();
+        })
+
+        function randomChar() {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lowerCase = alphabet.toLowerCase();
+            const randomCharacter =
+                lowerCase[Math.floor(Math.random() * lowerCase.length)]; // generates random char
+            return randomCharacter;
+        }
+    </script>
+</body>
+
+</html>

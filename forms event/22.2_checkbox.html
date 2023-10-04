@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22.2_checkbox</title>
+
+    <style>
+        #myForm {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            gap: 20px;
+            border: 1px solid gray;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myForm">
+        <h2>Doyou want to say hello to VENUS?</h2>
+        <input type="checkbox" id="yes" name="yesHello" >
+        <img id="img" style=" display: none;width: 400px; height: 200px;;"
+            src="https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1688,w_3000,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1661361208/220822-venus-contact-hero_b73v5j"
+            alt="">
+
+
+    </form>
+
+    <script>
+        let check = document.getElementById("yes")
+        let img = document.getElementById("img")
+
+        check.addEventListener('change', function () {
+            if (this.checked) {
+
+                img.style.display = "block"
+
+
+            } else {
+
+                img.style.display = "none"
+            }
+        });
+
+
+
+    </script>
+</body>
+
+
+
+</html>

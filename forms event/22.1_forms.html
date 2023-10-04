@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms event</title>
+    <style>
+        #myForm {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            gap: 20px;
+            border: 1px solid gray;
+            padding: 30px;
+        }
+
+        #displayedData {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* margin: auto; */
+        }
+
+        #button{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="myForm">
+      
+        <input type="text" id="firstName" placeholder="firstName">
+        <input type="number" id="age" placeholder="age">
+        <input type="email" id="email" placeholder="email">
+        <button type="submit">Submit</button>
+        <div id="displayedData">
+            <h2>Data Saved</h2>
+            <p id="displayedName"></p>
+            <p id="displayedAge"></p>
+            <p id="displayedEmail"></p>
+
+        </div>
+  
+        <div id="button">
+            <button type="submit" id="confirm">confirm</button>
+            <button type="submit" id="changeData">change data</button>
+            <p id="congra"></p>
+           
+        </div>
+
+    </form>
+  
+
+
+    <script>
+        //global obj
+        let formData = {};
+
+
+        const myForm = document.getElementById('myForm');
+        const firstNameInput = document.getElementById('firstName');
+        const ageInput = document.getElementById('age');
+        const emailInput = document.getElementById('email');
+        const button = document.getElementById("button")
+
+        myForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let firstName = firstNameInput.value;
+            let age = ageInput.value;
+            let email = emailInput.value
+
+            formData.firstName = firstName;
+                formData.age = age;
+                formData.email = email;
+
+            displayFormData()
+            button.style.display = "block"
+        })
+
+       
+
+
+        function displayFormData() {
+            let displayedName = document.getElementById('displayedName');
+            let displayedAge = document.getElementById('displayedAge');
+            let displayedEmail = document.getElementById('displayedEmail');
+
+            displayedName.innerText = 'Name :' + formData.firstName;
+            displayedAge.innerText = 'age :' + formData.age;
+            displayedEmail.textContent = 'email :' + formData.email;
+            console.log(formData)
+
+        }
+
+        const confirm = document.getElementById("confirm");
+        const changeData = document.getElementById("changeData");
+        const div = document.getElementById("div")
+        confirm.addEventListener("click", function(){
+            let congra = document.getElementById("congra")
+            congra.innerText = `“congratulations you successfully sent this form`
+            // div.style.display = "none"
+
+            
+
+        })
+
+
+        changeData.addEventListener("click",function(){
+            congra.innerText = `Enter your data again`
+        })
+
+
+
+
+    </script>
+
+</body>
+
+</html>
